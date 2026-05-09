@@ -113,28 +113,19 @@ const about: About = {
         name: "SeaTech",
         timeframe: "2025 - Present",
         description: <>Diplome d'ingénieure</>,
-        achievements: [
-          <>
-            Seatech est une école d'ingénieur du groupe INP specialisé dans sciences et technologie dédies au secteur maritime.          </>,
-        ],
+        
       },
       {
         name: "Lycée Camille Julian",
         timeframe: "2023 - 2025",
         description: <>Classe préparatoire aux grandes écoles</>,
-        achievements: [
-          <>
-          Physique Chimie Science de l'Ingénieur (PCSI) puis Physique Chimie (PC)           </>,
-        ],
+        
       },
       {
         name: "Lycée Jean Dautet",
         timeframe: "2020 - 2023",
         description: <>Bacalauréat </>,
-        achievements: [
-          <>
-          Specialité Math, Physique, SVT Option Maths expertes          </>,
-        ],
+        
       },
     ],
   },
