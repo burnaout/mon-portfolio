@@ -117,15 +117,6 @@ const about: About = {
           <>
             Seatech est une école d'ingénieur du groupe INP specialisé dans sciences et technologie dédies au secteur maritime.          </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/Club-Nautique-du-Pradet.png",
-            alt: "Once UI Project",
-             width: 8,
-            height: 4.5,
-          },
-        ],
       },
       {
         name: "Lycée Camille Julian",
