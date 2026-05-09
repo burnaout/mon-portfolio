@@ -180,7 +180,7 @@ export interface About extends BasePageConfig {
       /** Description of studies */
       description: React.ReactNode;
       /** Achievements at the company */
-      achievements: React.ReactNode[];
+      achievements?: React.ReactNode[];
       
     }>;
   };
