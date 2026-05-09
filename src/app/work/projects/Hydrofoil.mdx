@@ -1,0 +1,397 @@
+---
+title: "Étude physique d'un hydrofoil"
+publishedAt: "2025-05-08"
+summary: "TIPE de classe préparatoire : étude expérimentale et numérique des forces de traînée et de portance d'un hydrofoil, avec modélisation CFD sur SimScale."
+images:
+  - "/images/projects/hydrofoil/image61.png"
+  - "/images/projects/hydrofoil/image42.png"
+  - "/images/projects/hydrofoil/image63.png"
+  - "/images/projects/hydrofoil/image64.png"
+tag: "Science"
+---
+
+## Contexte
+
+Le foil est une technologie permettant de soulever un engin nautique hors de l'eau en réduisant drastiquement les frottements fluides avec l'eau. Les forces générées par une aile de foil dépendent de l'angle d'incidence. Les forces de traînée entraînent une perte d'énergie lors du déplacement — l'objectif est donc de les réduire.
+
+![Contexte foil](/images/projects/hydrofoil/image47.png)
+
+**Problématique :** Comment un foil peut-il réduire les traînées fluides subies par un bateau, et comment cette technologie peut-elle améliorer l'efficacité énergétique des transports maritimes ?
+
+## Objectifs
+
+- Réaliser des maquettes d'étude d'un foil par impression 3D
+- Comprendre et étudier l'interaction entre le foil et le fluide environnant
+- Modéliser numériquement les phénomènes avec un logiciel de simulation
+- Évaluer l'efficacité du foil dans le cadre du transport maritime
+
+## Foil étudié 
+Foil de type wingfoil/windfoil/kitefoil
+
+<img src="/images/projects/hydrofoil/image69.png" alt="description" style={{width: "60%", borderRadius: "8px"}} />
+
+## Maquettes des foils
+J'ai modélisé le foil sur Fusion 360, puis imprimé grâce au logiciel Cura et à mon imprimante Elegoo Neptune 3 Pro.
+<Row gap="16">
+  <img src="/images/projects/hydrofoil/image21.png" alt="Foil 1" style={{width: "30%", borderRadius: "8px"}} />
+  <img src="/images/projects/hydrofoil/image37.jpg" alt="Foil 2" style={{width: "30%", borderRadius: "8px"}} />
+</Row>
+
+Deux modèles ont été imprimés en 3D avec des propriétés différentes :
+
+<Row gap="16">
+  <Column gap="8" fillWidth>
+  <img src="/images/projects/hydrofoil/image10.png" alt="Foil 1" style={{width: "20%", borderRadius: "8px"}} />
+  <Text variant="body-default-xs" onBackground="neutral-weak">foil 1</Text>
+  </Column>
+  <Column gap="8" marginBottom="24">
+  <img src="/images/projects/hydrofoil/image12.png" alt="Foil 2" style={{width: "20%", borderRadius: "8px"}} />
+  <Text variant="body-default-xs" onBackground="neutral-weak">foil 2</Text>
+  </Column>
+</Row>
+
+
+- **Foil 1** — optimisé pour réduire la traînée
+- **Foil 2** — plus incurvé, en une seule pièce, optimisé pour la portance
+
+---
+
+## Expériences
+L'objectif de mes expériences était de mesurer analytiquement les forces appliquées aux foils : la force de traînée et la force de portance, en fonction de différents angles d'incidence dans l'eau.
+### Expérience 1 — Force de traînée (bassin circulaire)
+
+Un premier montage a été réalisé avec un bassin circulaire contenant une pompe d'un coté du bassin et le foil de l'autre.  
+Le foil était fixe dans le bassin, simplement relié à un axe de rotation considéré comme parfait (roulement à billes) et relié à un dynamomètre de 5 Newtons (mesure de forces).  
+J'ai également placé un moulin immergé au niveau du foil. À l'aide d'un tachymètre laser, j'ai mesuré la vitesse de rotation du moulin, ce qui m'a permis de calculer la vitesse de l'eau à ce niveau.
+<Row horizontal="center">
+  <img src="/images/projects/hydrofoil/image18.png" alt="schéma" style={{width: "20%", borderRadius: "8px"}} />
+</Row>
+<Row gap="16">
+  <img src="/images/projects/hydrofoil/image1.jpg" alt="Foil 1" style={{width: "40%", borderRadius: "8px"}} />
+  <img src="/images/projects/hydrofoil/image65.jpg" alt="Foil 2" style={{width: "40%", borderRadius: "8px"}} />
+</Row>
+
+**Problèmes rencontrés :** La forme circulaire du bassin ne permettait pas une répartition uniforme du courant sur le foil. En effet, l'eau passant dans la partie extérieure du bassin était plus rapide que celle à l'intérieur du virage. De plus, la force mesurée était faible et instable, et la vitesse estimée à la surface n'était pas représentative de celle au niveau du foil.  
+→ Changement de bassin nécessaire.
+
+---
+
+### Expérience 2 — Force de traînée (bassin droit)
+
+Un bassin droit a été utilisé avec la pompe à une extrémité reliée à un tuyau générant un courant uniforme face au foil, avec un dynamomètre plus précis (1N).
+
+![Montage expérimental 2 - bassin droit](/images/projects/hydrofoil/image70.png)
+
+![Détails du montage 2](/images/projects/hydrofoil/image64.png)
+Cette expérience a été plus concluante, le foil se stabilisait à une position précise (au lieu d'osciller comme précédemment).
+J'ai alors validé ce montage expérimental. Lors de mes mesures, l'expérience se déroulait comme suit :
+- J'allume la pompe.
+- J'attends que le foil se stabilise face au courant.
+- Je relève la valeur de l'angle auquel il s'est stabilisé ainsi que la valeur lue sur le dynamomètre.
+
+Détails :
+
+<Grid columns="2" gap="8" marginBottom="24">
+  <Media src="/images/projects/hydrofoil/image17.png" alt="Foil 1" aspectRatio="4/3" radius="l" />
+  <Media src="/images/projects/hydrofoil/image42.png" alt="Foil 2" aspectRatio="4/3" radius="l" />
+  <Media src="/images/projects/hydrofoil/image54.jpg" alt="Montage 1" aspectRatio="4/3" radius="l" />
+  <Media src="/images/projects/hydrofoil/image38.png" alt="Montage 2" aspectRatio="4/3" radius="l" />
+</Grid>
+
+#### Bilan des forces et moments
+
+En modélisant le foil comme un solide en équilibre autour de l'axe de rotation en haut du mât, j'ai fait le bilan des forces et des moments.
+<img src="/images/projects/hydrofoil/image3.png" alt="description" style={{width: "60%", borderRadius: "8px"}} />
+
+**Forces appliquées :**
+
+- Fx = ‖Fx‖ e<sub>x</sub> *(trainée recherchée)*
+- P = −mg e<sub>z</sub> *(poids)*
+- Π = ρVg e<sub>z</sub> *(poussée d'Archimède)*
+- T = −‖T‖ e<sub>x</sub> *(tension du dynamomètre)*
+
+**Moments par rapport au point de rotation :**
+- M<sub>Fx</sub> = d‖Fx‖cos(α)
+- M<sub>P</sub>= OG‖P‖sin(α)
+- M<sub>Π</sub> = −d‖Π‖sin(α)
+- M<sub>T</sub> = −d‖T‖cos(α)
+
+À l'équilibre, la somme des moments est nulle. Cela me permet de calculer la force de traînée subie par le foil en fonction des données du foil et de l'angle d'incidence :
+
+<Card radius="l" padding="24" marginBottom="24">
+  **Fx = T + tan(α)(Π − OG × P/d)**
+</Card>
+
+Avec les données suivantes :  
+- *m* : masse du foil  
+- *V* : volume d’eau déplacé  
+- *g* : accélération gravitationnelle  
+- *ρ* : masse volumique de l’eau  
+- *d* : taille du mât  
+- *OG* : distance haut mat/barycentre  
+
+#### Données physiques mesurées
+Afin d'obtenir certaines données, j'ai réalisé de petites expériences.
+
+A) J'ai rempli un cristallisoir d'eau à ras bord, lui-même placé dans une bassine. En insérant le foil dans le cristallisoir, l'eau s'est déversée dans la bassine. En pesant cet excédent, j'ai pu déterminer le volume d'eau déplacé et, par conséquent, la force de la poussée d'Archimède.
+- Volume déplacé : V₁ ≈ V₂ ≈ 13,0 mL → **‖Π‖ = 0,126 N**
+<Grid columns="2" gap="8" marginBottom="24">
+  <Media src="/images/projects/hydrofoil/image43.png" alt="Foil 1" aspectRatio="4/3" radius="l" />
+  <Media src="/images/projects/hydrofoil/image11.png" alt="Foil 2" aspectRatio="4/3" radius="l" />
+</Grid>
+B) Pour déterminer le barycentre, j'ai simplement trouvé le point d'équilibre horizontal du foil.  
+- Distance barycentre : OG₁ = 15,7 cm / OG₂ = 17,3 cm
+<Grid columns="2" gap="8" marginBottom="24">
+  <Media src="/images/projects/hydrofoil/image55.jpg" alt="Montage 1" aspectRatio="4/3" radius="l" />
+  <Media src="/images/projects/hydrofoil/image35.png" alt="Montage 2" aspectRatio="4/3" radius="l" />
+</Grid>
+
+#### Résultats
+<img src="/images/projects/hydrofoil/image16.png" alt="description" style={{width: "30%", borderRadius: "8px"}} />
+<Column gap="8" marginBottom="24">
+  <img src="/images/projects/hydrofoil/image26.png" alt="description" style={{width: "60%", borderRadius: "8px"}} />
+  <Text variant="body-default-xs" onBackground="neutral-weak">Tableau des résultats avec le force de trainée directement calculé avec l'incertitude associé</Text>
+  </Column>
+
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/hydrofoil/image44.png" alt="Foil 1" style={{width: "120%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Foil 1 — optimisé traînée</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/hydrofoil/image7.png" alt="Foil 2" style={{width: "120%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Foil 2 — optimisé portance</Text>
+  </Column>
+</Row>
+On remarque que la force de traînée augmente lorsque l'angle d'incidence augmente.
+**Foil 1 :** L'angle neutre (0°) est la position qui génère le moins de traînée.
+**Foil 2 :** Un phénomène de décrochage survient à haute incidence (> 15°).  
+
+
+- Un **décrochage** survient à haute inclinaison avec une chute brusque de la traînée.
+<img src="/images/projects/hydrofoil/image27.png" alt="description" style={{width: "40%", borderRadius: "8px"}} />  
+Pour expliquer ce phénomène, j'ai émis l'hypothèse suivante : la taille du tuyau crée une sortie d'eau trop petite, formant un jet fin. Ce jet frappe uniquement le dessous de l'aile du foil à haute incidence. Le courant ne passant plus sur l'extrados de l'aile, cela crée les conditions caractéristiques d'un décrochage.  
+
+---
+
+Après avoir calculé la force de traînée, je me suis intéressé à la force de portance du foil.
+
+### Expérience 3 — Force de portance
+
+Le même montage a été réutilisé avec le dynamomètre repositionné verticalement pour mesurer la portance selon plusieurs angles.
+
+<img src="/images/projects/hydrofoil/image56.png" alt="img1" style={{width: "30%", borderRadius: "8px"}} />
+<img src="/images/projects/hydrofoil/image52.png" alt="img2" style={{width: "40%", borderRadius: "8px"}} />
+
+**Forces analysées :**
+- Fz = ‖Fz‖ e<sub>z</sub> *(portance recherchée)*
+- P = −mg e<sub>z</sub> *(poids)*
+- Π = ρVg e<sub>z</sub> *(poussée d'Archimède)*
+- T = ‖T‖(−sin(α) e<sub>x</sub> − cos(α) e<sub>z</sub>) *(Valeur du dynamomètre)*
+
+L'axe de rotation a été supprimé car le foil glisse selon l'axe du dynamomètre, donc il n'y a pas de moment à calculer.
+
+En effectuant une somme des forces projetées à l'équilibre du foil, il est possible de déterminer la force de portance. 
+
+Détails : 
+<Row gap="16">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/hydrofoil/image31.png" alt="img2" style={{width: "80%", borderRadius: "8px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Le foil est attaché par un fil fixé afin de "contrer" la force de trainée.</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/hydrofoil/image24.png" alt="img3" style={{width: "80%", borderRadius: "8px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">vu de haut</Text>
+  </Column>
+</Row>
+
+**Résultat :** Une portance négative a été observée.
+  <img src="/images/projects/hydrofoil/image51.png" alt="Foil 1" style={{width: "40%", borderRadius: "8px"}} />
+
+  <img src="/images/projects/hydrofoil/image28.png" alt="Foil 2" style={{width: "70%", borderRadius: "8px"}} />
+On observe que la portance augmente lorsque l'incidence augmente (résultat attendu), mais la portance reste négative. Cela signifie que le foil, au lieu de générer une portance positive, crée une force qui le fait couler.
+**Hypothèse :** Le niveau bas de l'eau et la position du foil proche du fond du bassin créent un effet Venturi qui diminue la pression sous l'aile et rend la portance négative.
+<img src="/images/projects/hydrofoil/image68.png" alt="description" style={{width: "40%", borderRadius: "8px"}} />
+→ Résultats inutilisables, expérience à reconduire.
+---
+
+### Expérience 4 — Maître couple et coefficient de traînée
+
+#### Mécanique des fluides
+
+Le nombre de Reynolds permet de déterminer si l'écoulement est dominé par les forces visqueuses ou convectives :
+<Row gap="16">
+  <img src="/images/projects/hydrofoil/image14.png" alt="img2" style={{width: "20%", borderRadius: "8px"}} />
+  <Column gap="8" fillWidth>
+    <Text align="center">v: vitesse du fluide </Text>
+    <Text align="center">rho: la masse volumique du fluide </Text>
+    <Text align="center">eta: la viscosité dynamique du fluide</Text>
+    <Text align="center">L : la longueur caractéristique (m) sur laquelle varie v.</Text>
+  </Column>
+</Row>
+Pour déterminer la vitesse de l'eau au niveau du foil, j'ai appliqué la conservation du débit entre les deux sections (S1 et S2).
+
+Avec le débit de la pompe (69 L/min), on obtient : **v ≈ 0,1 m/s** → **Re ≈ 1500**. L'écoulement est donc de régime quadratique.
+  <img src="/images/projects/hydrofoil/image6.png" alt="img2" style={{width: "33%", borderRadius: "8px"}} />
+
+Ensuite, j'ai souhaité déterminer le coefficient de traînée (Cx) du foil.
+Le coefficient de traînée Cx est lié à la force de traînée et au maître couple S (section frontale du foil) par la formule suivante :
+  <img src="/images/projects/hydrofoil/image2.png" alt="img2" style={{width: "33%", borderRadius: "8px"}} />
+  <img src="/images/projects/hydrofoil/image30.png" alt="img2" style={{width: "33%", borderRadius: "8px"}} />
+
+#### Mesure du maître couple
+
+Afin de mesurer le maître couple du foil, j'ai réalisé une autre expérience. Le foil a été photographié de face, face à une règle étalon, à plusieurs angles d'incidence. 
+<Row gap="16">
+  <img src="/images/projects/hydrofoil/image5.jpg" alt="Foil 1" style={{width: "30%", borderRadius: "8px"}} />
+  <img src="/images/projects/hydrofoil/image9.jpg" alt="Foil 2" style={{width: "30%", borderRadius: "8px"}} />
+</Row>
+La surface frontale a été mesurée grâce au logiciel **MESURIM**.
+
+<Row gap="16">
+  <img src="/images/projects/hydrofoil/image50.jpg" alt="Foil 1" style={{width: "30%", borderRadius: "8px"}} />
+  <img src="/images/projects/hydrofoil/image71.jpg" alt="Foil 2" style={{width: "30%", borderRadius: "8px"}} />
+  <img src="/images/projects/hydrofoil/image72.jpg" alt="Foil 2" style={{width: "30%", borderRadius: "8px"}} />
+</Row>
+J'ai ainsi pu déterminer la surface frontale en fonction de l'angle d'incidence et finalement calculer le coefficient de traînée des deux foils.
+<Row gap="16">
+  <img src="/images/projects/hydrofoil/image8.png" alt="Foil 1" />
+  <img src="/images/projects/hydrofoil/image62.png" alt="Foil 2"/>
+</Row>
+<Row gap="16">
+  <img src="/images/projects/hydrofoil/image57.png" style={{width: "60%", borderRadius: "8px"}} />
+  <img src="/images/projects/hydrofoil/image60.png" style={{width: "60%", borderRadius: "8px"}} />
+</Row>
+---
+
+## Modélisation numérique — SimScale
+
+Le foil 3D a été importé dans le logiciel de simulation CFD **SimScale** (basé sur OpenFOAM) pour simuler l'écoulement de l'eau autour du foil.
+
+### Étapes de modélisation
+
+**1. Importation du modèle 3D**
+
+![Import modèle 3D SimScale](/images/projects/hydrofoil/image59.png)
+
+**2. Création de la zone de fluide**
+
+Un volume de fluide externe a été créé autour du foil pour délimiter la zone de simulation.
+
+![Zone de fluide SimScale](/images/projects/hydrofoil/image53.png)
+
+**3. Création du maillage**
+
+Maillage hexaédrique dominant avec ≈ 899k cellules et 1,1M nœuds. Un cylindre de raffinement a été ajouté autour du foil.
+
+![Maillage SimScale](/images/projects/hydrofoil/image58.png)
+![Maillage SimScale](/images/projects/hydrofoil/image40.png)
+
+**4. Conditions aux limites**
+- Entrée : vitesse **12 m/s** selon X
+- Sortie : pression nulle
+- Parois : condition no-slip
+- Fluide : eau (ρ = 997,3 kg/m³, ν = 9,338×10⁻⁷ m²/s)
+
+### Résultats de simulation
+
+**Ralentissement de l'écoulement et formation de tourbillons → Traînée**
+
+![Champ de vitesse SimScale - tourbillons](/images/projects/hydrofoil/image39.png)
+
+**Différence de pression de part et d'autre de l'aile → Portance**
+
+![Champ de pression SimScale - portance](/images/projects/hydrofoil/image13.png)
+Le logiciel me permet d'obtenir les coefficients du foil.
+**Coefficients aérodynamiques en fonction du temps** (période transitoire puis convergence)
+<Grid columns="2" gap="8" marginBottom="24">
+  <Media src="/images/projects/hydrofoil/image25.png" alt="Foil 1" aspectRatio="4/3" radius="l" />
+  <Media src="/images/projects/hydrofoil/image29.png" alt="Foil 2" aspectRatio="4/3" radius="l" />
+  <Media src="/images/projects/hydrofoil/image33.png" alt="Montage 1" aspectRatio="4/3" radius="l" />
+  <Media src="/images/projects/hydrofoil/image49.png" alt="Montage 2" aspectRatio="4/3" radius="l" />
+</Grid>
+Cela m'a permis de tracer la polaire de Eiffel, une courbe représentant le coefficient de traînée en fonction du coefficient de portance. Grâce à cette courbe, on obtient la finesse maximale du foil : l'angle d'incidence qui génère le moins de traînée et le plus de portance. 
+La **finesse maximale** du foil est atteinte autour de **7°** d'angle d'incidence.
+
+![Champ de vitesse SimScale - tourbillons](/images/projects/hydrofoil/image45.png)
+
+---
+
+## Application énergétique
+
+### Calcul comparatif sur un bateau naviguant à une vitesse moyenne de 5 m/s sur une distance de 10 km
+<Row gap="16">
+  <img src="/images/projects/hydrofoil/image19.png" alt="Foil 1" style={{width: "50%", borderRadius: "8px"}}/>
+  <img src="/images/projects/hydrofoil/image32.png" alt="Foil 2" style={{width: "50%", borderRadius: "8px"}}/>
+</Row>
+  <img src="/images/projects/hydrofoil/image34.png" alt="Foil 2" style={{width: "50%", borderRadius: "8px"}}/>
+
+<Table
+  data={{
+    headers: [
+      { content: "", key: "label" },
+      { content: "Sans foil", key: "sans", sortable: true },
+      { content: "Avec foil", key: "avec", sortable: true }
+    ],
+    rows: [
+      ["Maître couple S", "2,0 m²", "0,4 m²"],
+      ["Coefficient Cx", "0,5", "0,1"],
+      ["Force de traînée Fx", "12 500 N", "500 N"],
+      ["Travail W", "12,5 MJ", "0,5 MJ"]
+    ]
+  }}
+/>
+
+Le foil permet une **réduction de 96% de l'énergie dépensée** pour vaincre la traînée fluide.
+
+---
+
+## Conclusion
+
+L'utilisation des foils au **Vendée Globe 2024** a permis à Charlie Dalin de pulvériser le record en 64 jours. Jean Le Cam, sur un bateau sans foil, a mis 21 jours de plus. Une innovation comme le foil peut transformer nos modes de transport et contribuer à une transition vers une mobilité plus efficace et rapide.
+
+---
+## Documents complémentaires
+
+<Row gap="16" marginTop="16">
+  <Card radius="l" padding="20" fillWidth>
+    <Row gap="16" vertical="center">
+      <Icon name="document" size="l" onBackground="brand-medium" />
+      <Column gap="4" fillWidth>
+        <Text variant="heading-strong-s">Présentation TIPE</Text>
+        <Text variant="body-default-xs" onBackground="neutral-weak">Slides de présentation complètes</Text>
+      </Column>
+      <Button variant="secondary" size="s" label="Voir" href="/documents/Présentation TIPE finale .pdf" suffixIcon="chevronRight" />
+    </Row>
+  </Card>
+
+  <Card radius="l" padding="20" fillWidth>
+    <Row gap="16" vertical="center">
+      <Icon name="document" size="l" onBackground="brand-medium" />
+      <Column gap="4" fillWidth>
+        <Text variant="heading-strong-s">MCOT</Text>
+        <Text variant="body-default-xs" onBackground="neutral-weak">Mise en Cohérence des Objectifs du TIPE</Text>
+      </Column>
+      <Button variant="secondary" size="s" label="Voir" href="/documents/Mcot1.pdf" suffixIcon="chevronRight" />
+    </Row>
+  </Card>
+</Row>
+
+---
+
+## Annexe — Démonstration complète
+
+À l'équilibre, la somme des moments est nulle :
+
+∑Moment = 0 = M_Δ + M_Fx + M_P + M_Π + M_T
+
+0 + d‖Fx‖cos(α) + OG‖P‖sin(α) − d‖Π‖sin(α) − d‖T‖cos(α) = 0
+
+d‖Fx‖cos(α) = d‖Π‖sin(α) + d‖T‖cos(α) − OG‖P‖sin(α)
+
+‖Fx‖ = ‖T‖ + (‖Π‖ − OG‖P‖/d) × tan(α)
+
+### Présentation et reconnaissance académique
+
+La présentation de ce projet m'a permis d'obtenir une note de 17,7/20 au concours CCINP.

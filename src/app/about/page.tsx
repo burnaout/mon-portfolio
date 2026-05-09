@@ -35,15 +35,16 @@ export default function About() {
       items: [],
     },
     {
-      title: about.work.title,
-      display: about.work.display,
-      items: about.work.experiences.map((experience) => experience.company),
-    },
-    {
       title: about.studies.title,
       display: about.studies.display,
       items: about.studies.institutions.map((institution) => institution.name),
     },
+    {
+      title: about.work.title,
+      display: about.work.display,
+      items: about.work.experiences.map((experience) => experience.company),
+    },
+    
     {
       title: about.technical.title,
       display: about.technical.display,
@@ -262,24 +263,44 @@ export default function About() {
           )}
 
           {about.studies.display && (
-            <>
-              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
-                {about.studies.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-                {about.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
-                      {institution.description}
-                    </Text>
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
+  <>
+    <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
+      {about.studies.title}
+    </Heading>
+    <Column fillWidth gap="l" marginBottom="40">
+      {about.studies.institutions.map((institution, index) => (
+        <Column key={`${institution.name}-${index}`} fillWidth gap="4">
+          <Row fillWidth horizontal="between" vertical="center">
+            <Text id={institution.name} variant="heading-strong-l">
+              {institution.name}
+            </Text>
+            {institution.timeframe && (
+              <Text variant="heading-default-xs" onBackground="neutral-weak">
+                {institution.timeframe}
+              </Text>
+            )}
+          </Row>
+          <Text variant="heading-default-xs" onBackground="brand-weak">
+            {institution.description}
+          </Text>
+          <Column as="ul" gap="16">
+                      {institution.achievements.map(
+                        (achievement: React.ReactNode, index: number) => (
+                          <Text
+                            as="li"
+                            variant="body-default-m"
+                            key={`${institution.name}-${index}`}
+                          >
+                            {achievement}
+                          </Text>
+                        ),
+                      )}
+                    </Column>
+        </Column>
+      ))}
+    </Column>
+  </>
+)}
 
           {about.technical.display && (
             <>

@@ -2,20 +2,20 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  firstName: "Gabin",
+  lastName: "Mercier",
+  name: `Gabin Mercier`,
+  role: "Etudiant en ingénieurie",
+  avatar: "/images/PhotoProCv.png",
+  email: "gabin.mercier.bao@gmail.com",
+  location: "Europe/Paris", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["Francais", "Anglais"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
-  display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  display: false,
+  title: <>Abonnez vous à la Newsletter de {person.firstName}</>,
+  description: <>Ma newsletter a propos de mes projets et experiences</>,
 };
 
 const social: Social = [
@@ -31,20 +31,20 @@ const social: Social = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/gabin-mercier",
     essential: true,
   },
   {
     name: "Instagram",
     icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
-    essential: false,
+    link: "https://www.instagram.com/gabin_merc/",
+    essential: true,
   },
   {
     name: "Threads",
     icon: "threads",
     link: "https://www.threads.com/@once_ui",
-    essential: true,
+    essential: false,
   },
   {
     name: "Email",
@@ -58,17 +58,17 @@ const home: Home = {
   path: "/",
   image: "/images/og/home.jpg",
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  title: `Portfolio de ${person.name}`,
+  description: `Portfolio reunissant mon travail en tant que ${person.role}`,
+  headline: <>Découvrez mes projets et réalisations.</>,
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong className="ml-4">SeaTech Toulon</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Featured work
+          Etude Actuel
         </Text>
       </Row>
     ),
@@ -76,16 +76,15 @@ const home: Home = {
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+    Je suis Gabin, étudiant en École d'Ingénieur à <Text as="span" size="xl" weight="strong">SeaTech Toulon</Text>, où j'apprend l'ingenieurie Aéronaval et des principes physiques maritime.</>
   ),
 };
 
 const about: About = {
   path: "/about",
-  label: "About",
-  title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  label: "À propos",
+  title: `À propos – ${person.name}`,
+  description: `Rencontre ${person.name}, ${person.role} de ${person.location}`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -94,7 +93,7 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -102,131 +101,191 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Étudiant en diplôme d'ingénieur issu d'une classe préparatoire PC, je combine une formation scientifique solide et des expériences en encadrement avec des responsabilités.
       </>
     ),
   },
-  work: {
+  studies: {
     display: true, // set to false to hide this section
-    title: "Work Experience",
-    experiences: [
+    title: "Etudes",
+    institutions: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        name: "SeaTech",
+        timeframe: "2025 - Present",
+        description: <>Diplome d'ingénieure</>,
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
+            Seatech est une école d'ingénieur du groupe INP specialisé dans sciences et technologie dédies au secteur maritime.          </>,
+        ],
+        images: [
+          // optional: leave the array empty if you don't want to display images
+          {
+            src: "/images/projects/project-01/Club-Nautique-du-Pradet.png",
+            alt: "Once UI Project",
+             width: 8,
+            height: 4.5,
+          },
+        ],
+      },
+      {
+        name: "Lycée Camille Julian",
+        timeframe: "2023 - 2025",
+        description: <>Classe préparatoire aux grandes écoles</>,
+        achievements: [
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+          Physique Chimie Science de l'Ingénieur (PCSI) puis Physique Chimie (PC)           </>,
+        ],
+      },
+      {
+        name: "Lycée Jean Dautet",
+        timeframe: "2020 - 2023",
+        description: <>Bacalauréat </>,
+        achievements: [
+          <>
+          Specialité Math, Physique, SVT Option Maths expertes          </>,
+        ],
+      },
+    ],
+  },
+  work: {
+    display: true, // set to false to hide this section
+    title: "Experiences Professionnelles",
+    experiences: [
+      {
+        company: "Club nautique du Pradet de la Garonne",
+        timeframe: "2025 - Present",
+        role: "Moniteur de voile",
+        achievements: [
+          <>
+            Encadrement de groupes, gestion de la sécurité, organisation des séances, pédagogie et responsabilité.
           </>,
         ],
         images: [
           // optional: leave the array empty if you don't want to display images
           {
-            src: "/images/projects/project-01/cover-01.jpg",
+            src: "/images/projects/project-01/Club-Nautique-du-Pradet.png",
             alt: "Once UI Project",
-            width: 16,
-            height: 9,
+             width: 8,
+            height: 4.5,
           },
         ],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Club nautique de la Couarde du Goisil",
+        timeframe: "2022 - Present",
+        role: "Moniteur de voile",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Encadrement de groupes, gestion de la sécurité, organisation des séances, pédagogie et responsabilité.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Experience saisonnière.
           </>,
         ],
-        images: [],
+        images: [
+          // optional: leave the array empty if you don't want to display images
+          {
+            src: "/images/projects/project-01/Logo-CNCG-Accueil.png",
+            alt: "Once UI Project",
+            width: 8,
+            height: 4.5,
+          },
+        ],
+      },
+       {
+        company: "Cooperative des sauniers de l'ile de Ré",
+        timeframe: "2020 - 2022",
+        role: "Récolte de sel / Vente",
+        achievements: [
+          <>
+            Récolte artisanale des sel dans les marais salants 
+          </>,
+          <>
+            Experience saisonnière dans la vente et le contact client, gestion de stock et logistique.
+          </>,
+        ],
+        images: [
+          // optional: leave the array empty if you don't want to display images
+          {
+            src: "/images/projects/project-01/Logo_LesSauniers.png",
+            alt: "Once UI Project",
+            width: 8,
+            height: 4.5,
+          },
+        ],
       },
     ],
   },
-  studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
-    institutions: [
-      {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
-      },
-    ],
-  },
+  
   technical: {
     display: true, // set to false to hide this section
-    title: "Technical skills",
+    title: "Compétences Techniques",
     skills: [
       {
-        title: "Figma",
+        title: "Programmation",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>Compétent en Python, apprentissage du langage C. Autodidacte pour le développement de sites web avec WordPress. Modélisation d'écoulement avec Simscale</>
         ),
         tags: [
           {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "Python",
+            icon: "python",
           },
           {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "C",
+            icon: "c",
+          },
+          {
+            name: "SQL",
+            icon: "sql",
+          },
+          {
+            name: "Simscale",
+            icon: "simscale",
           },
         ],
       },
       {
-        title: "Next.js",
+        title: "Modélisation et Conception",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>Je me forme personnellement aux outils de modélisations tels que Fusion 360, et j'imprime mes propres composants avec mon impirmante 3D.</>
         ),
         tags: [
           {
-            name: "JavaScript",
-            icon: "javascript",
+            name: "Fusion 360",
+            icon: "fusion360",
           },
           {
-            name: "Next.js",
-            icon: "nextjs",
+            name: "Impression 3D",
+            icon: "3d-printing",
           },
           {
-            name: "Supabase",
-            icon: "supabase",
+            name: "Cura",
+            icon: "cura",
           },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
+        
+      },
+      {
+        title: "Aéonautique/Nautisme",
+        description: (
+          <> Formation Private Pilot License ( PPL ) , BIA (brevet d'intiation aéronautique),  Monitorat (CQP initiateur voile ), Niveau 4 voile</>
+        ),
+        tags: [
           {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "BIA",
+            icon: "bia",
+          },
+          {
+            name: "PPL",
+            icon: "ppl",
+          },
+          {
+            name: "CQP Initiateur Voile",
+            icon: "cqp-initiator-voile",
           },
         ],
+        
       },
     ],
   },
@@ -243,8 +302,8 @@ const blog: Blog = {
 
 const work: Work = {
   path: "/work",
-  label: "Work",
-  title: `Projects – ${person.name}`,
+  label: "Projets",
+  title: `Projets – ${person.name}`,
   description: `Design and dev projects by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
