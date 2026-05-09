@@ -283,19 +283,21 @@ export default function About() {
           <Text variant="heading-default-xs" onBackground="brand-weak">
             {institution.description}
           </Text>
-          <Column as="ul" gap="16">
-                      {institution.achievements.map(
-                        (achievement: React.ReactNode, index: number) => (
-                          <Text
-                            as="li"
-                            variant="body-default-m"
-                            key={`${institution.name}-${index}`}
-                          >
-                            {achievement}
-                          </Text>
-                        ),
-                      )}
-                    </Column>
+          {institution.achievements && (
+            <Column as="ul" gap="16">
+              {institution.achievements.map(
+                (achievement: React.ReactNode, index: number) => (
+                  <Text
+                    as="li"
+                    variant="body-default-m"
+                    key={`${institution.name}-${index}`}
+                  >
+                    {achievement}
+                  </Text>
+                ),
+              )}
+            </Column>
+          )}
         </Column>
       ))}
     </Column>
