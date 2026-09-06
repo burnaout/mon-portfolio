@@ -4,17 +4,10 @@ import "@/resources/custom.css";
 
 import classNames from "classnames";
 
-import {
-  Background,
-  Column,
-  Flex,
-  Meta,
-  opacity,
-  RevealFx,
-  SpacingToken,
-} from "@once-ui-system/core";
-import { Footer, Header, RouteGuard, Providers } from "@/components";
-import { baseURL, effects, fonts, style, dataStyle, home } from "@/resources";
+import { Footer, Header, Providers, RouteGuard } from "@/components";
+import { baseURL, dataStyle, effects, fonts, home, style } from "@/resources";
+import { Background, Column, Flex, Meta, RevealFx } from "@once-ui-system/core";
+import type { SpacingToken, opacity } from "@once-ui-system/core";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -47,6 +40,7 @@ export default async function RootLayout({
       <head>
         <script
           id="theme-init"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: theme state must be applied before hydration
           dangerouslySetInnerHTML={{
             __html: `
               (function() {

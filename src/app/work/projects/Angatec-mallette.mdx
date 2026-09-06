@@ -1,0 +1,204 @@
+---
+title: "Mallette de contrôle qualité pour moteurs de robots pompier"
+publishedAt: "2025-06-01"
+summary: "Stage chez Angatec (La Rochelle) — conception complète d'une mallette de test autonome pour le contrôle qualité des moteurs brushless du robot pompier Tec800, de l'analyse du besoin jusqu'à la validation du produit."
+images:
+  - "/images/projects/angatec/cover.jpg"
+  - "/images/projects/angatec/mallette-finale.jpg"
+  - "/images/projects/angatec/interface-gui.jpg"
+tag: "Ingénierie"
+---
+
+## Contexte
+
+Angatec est une PME rochelaise spécialisée dans la conception et la fabrication de robots destinés aux services d'incendie et de secours. Son produit phare, le **Tec800**, est un robot pompier à chenilles conçu pour intervenir dans des environnements dangereux ou inaccessibles aux équipes humaines — incendies industriels, zones à risque chimique, espaces confinés.
+
+![Robot Tec800 d'Angatec](/images/projects/angatec/tec800.jpg)
+
+La propulsion de ce robot repose sur deux moteurs brushless de forte puissance dont l'architecture électrique est complexe. L'entreprise faisait face à une problématique récurrente : des moteurs défectueux n'étaient détectés qu'une fois montés sur le robot, entraînant des démontages coûteux en temps et parfois des renvois au fournisseur.
+
+Le seul outil disponible avant ce projet était un logiciel propriétaire utilisable uniquement par un expert, sur un ordinateur relié en USB, avec deux alimentations de laboratoire distinctes. Un contrôle qualité systématique en réception était donc impossible en pratique.
+
+---
+
+## Objectifs du projet
+
+Concevoir et réaliser une **mallette de test autonome** permettant à n'importe quel opérateur, sans connaissance technique préalable, de réaliser un contrôle qualité complet d'un moteur brushless dès sa réception — avec un simple branchement sur une prise secteur 220 V.
+
+<Card radius="l" padding="24" marginBottom="24" border="brand-medium">
+  <Column gap="8">
+    <Text variant="heading-strong-s">Cahier des charges</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">**Intuitivité** — utilisable sans expertise, toutes les instructions affichées à l'écran.</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">**Autonomie** — aucun appareil extérieur requis, branchement secteur 220 V uniquement.</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">**Exhaustivité** — quatre tests de validation qualité intégralement réalisables.</Text>
+  </Column>
+</Card>
+
+---
+
+## Les quatre tests de validation
+
+Le cahier des charges a été établi avec le chef électromécanicien d'Angatec autour de quatre tests :
+
+<Table
+  data={{
+    headers: [
+      { content: "Test", key: "test" },
+      { content: "Description", key: "desc" }
+    ],
+    rows: [
+      ["Test du frein", "Envoi d'une tension de 25 V dans le câble de frein — vérification visuelle du désenclenchement."],
+      ["Test BADJ", "Trois mesures successives de l'angle encodeur/moteur — dispersion faible requise."],
+      ["Boucle ouverte (Open Loop)", "Vérification du sens de rotation horaire et antihoraire sans retour encodeur."],
+      ["Boucle fermée (Closed Loop)", "Accélération, maintien de vitesse et décélération avec retour encodeur — vérification de la consigne."]
+    ]
+  }}
+/>
+
+---
+
+## Choix technologiques
+
+Pour remplacer l'ordinateur et le logiciel propriétaire, j'ai opté pour une **carte Raspberry Pi** associée à un **écran tactile**, embarqués directement dans la mallette.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/angatec/raspberry-carte-frein.jpg" alt="Raspberry Pi et carte de contrôle de frein" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Raspberry Pi et carte de commande du frein</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/angatec/borniers-wago.jpg" alt="Borniers Wago de connexion" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Borniers Wago pour la connexion du moteur</Text>
+  </Column>
+</Row>
+
+**Architecture d'alimentation :**
+- Convertisseur AC/DC 220 V → 50 V pour le contrôleur Roboteq
+- Convertisseur AC/DC 220 V → 5 V pour la Raspberry Pi et l'écran
+- Convertisseur DC/DC 50 V → 24 V pour le circuit de freinage
+
+**Connectique moteur :** borniers à levier Wago — 6 borniers 16 mm² pour la puissance, 8 borniers 2,5 mm² pour les signaux — permettant un branchement rapide sans outillage.
+
+---
+
+## Développement logiciel
+
+### Communication avec le contrôleur
+
+Le contrôleur Roboteq (modèle RGBL) communique via des commandes textuelles en ASCII sur port série USB. J'ai développé en **Python** une classe de communication encapsulant l'envoi de commandes et la lecture des réponses.
+
+```python
+def write(self, command: str) -> None:
+    """Write and send a command to the console"""
+    cmd: bytes = f"{command}\r".encode(encoding="ascii")
+    if self.ser:
+        self.ser.write(data=cmd)
+        self.ser.flush()
+        sleep(self.WRITE_DEADTIME)
+```
+
+Les commandes principales utilisées :
+
+| Commande | Fonction |
+|---|---|
+| `^MMOD` | Mode du moteur (Open Loop / Closed Loop) |
+| `~BADJ` | Lecture de l'angle BADJ |
+| `%CLMOD` | Réglage automatique moteur/encodeur |
+| `!G` | Application d'une consigne de rotation |
+| `?BS` | Lecture de la vitesse moteur (rpm) |
+
+### Interface graphique
+
+Deux interfaces ont été développées :
+- Une **interface terminal (TUI)** pour le développement
+- Une **interface graphique (GUI)** avec **tkinter** et **ttkbootstrap** pour l'écran tactile
+
+L'interface s'articule autour de quatre types d'écrans réutilisables : `InstructionFrame`, `ChoicesFrame`, `LoadingFrame` et `UIErrorsFrame`. Pour garantir la réactivité de l'interface pendant l'exécution des tests, le programme de test et l'affichage tournent sur des **threads distincts**.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/angatec/gui-accueil.jpg" alt="Écran d'accueil de l'interface" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Écran d'accueil de l'interface graphique</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/angatec/gui-frames.jpg" alt="Différentes frames du programme" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Les différentes frames du programme de test</Text>
+  </Column>
+</Row>
+
+---
+
+## Conception mécanique et impression 3D
+
+L'ensemble des composants est intégré dans un boîtier **Max Case MAX 505**. Les modèles 3D des composants ont été récupérés sur 3DFindit pour concevoir une structure interne sur mesure en CAO.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/angatec/cao-structure.jpg" alt="Rendu CAO de la structure interne" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Rendu CAO de la structure interne assemblée</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/angatec/cao-boitier.jpg" alt="Intégration dans le boîtier" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Intégration des composants dans le Max Case</Text>
+  </Column>
+</Row>
+
+La structure a été découpée en **5 pièces distinctes** (plateau d'impression limité à 25×25 cm), chacune imprimée en ~18 heures sur une **Bambu Lab X1 Carbon**. Les fixations utilisent des trous taraudés M3 et des assemblages M5, avec des inserts filetés mis en place au fer à souder.
+
+---
+
+## Montage électrique et plaque interface
+
+Une fois les pièces imprimées, le montage électrique a été réalisé conformément au schéma électrique détaillé. La face supérieure de la mallette a été fermée par une **plaque plastique de 3 mm** découpée au **laser** selon un patron imprimé.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/angatec/assemblage-electrique.jpg" alt="Mallette en cours d'assemblage" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Mallette en cours d'assemblage électrique</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/angatec/decoupe-laser.jpg" alt="Découpe laser de la plaque" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Découpe laser de la plaque interface utilisateur</Text>
+  </Column>
+</Row>
+
+![Rendu final de la plaque interface utilisateur](/images/projects/angatec/plaque-finale.jpg)
+
+La mallette intègre également une petite caisse à outils contenant le matériel de dénudage des câbles et les stickers **QC Pass / QC Rejected** à coller sur les moteurs après test.
+
+---
+
+## Résultat final
+
+![Mallette de test finalisée en fonctionnement](/images/projects/angatec/mallette-fonctionnement.jpg)
+
+La mallette a été validée en exécutant les quatre tests sur des moteurs de référence. Elle permet désormais à **n'importe quel opérateur** de réaliser un contrôle qualité complet en branchant simplement le moteur et la mallette sur secteur.
+
+En fin de stage, un employé d'Angatec a enrichi le programme d'une **fonctionnalité de configuration des robots neufs**, illustrant la vocation évolutive de l'outil.
+
+---
+
+## Compétences mobilisées
+
+- **Python** — communication série ASCII, interface graphique tkinter/ttkbootstrap, architecture multi-thread
+- **CAO 3D** — modélisation et assemblage de pièces mécaniques sur mesure
+- **Impression 3D** — Bambu Lab X1 Carbon, pièces fonctionnelles avec inserts filetés
+- **Électronique** — schéma électrique, câblage, convertisseurs de tension, contrôleur moteur Roboteq
+- **Fabrication** — découpe laser, nomenclature de composants, gestion fournisseurs
+
+---
+
+## Documents complémentaires
+
+<Row gap="16" marginTop="16">
+  <Card radius="l" padding="20" fillWidth>
+    <Row gap="16" vertical="center">
+      <Icon name="document" size="l" onBackground="brand-medium" />
+      <Column gap="4" fillWidth>
+        <Text variant="heading-strong-s">Rapport de stage</Text>
+        <Text variant="body-default-xs" onBackground="neutral-weak">Rapport complet — Angatec, La Rochelle</Text>
+      </Column>
+      <Button variant="secondary" size="s" label="Voir" href="/documents/Rapport_de_stage_Angatec.pdf" suffixIcon="chevronRight" />
+    </Row>
+  </Card>
+</Row>
