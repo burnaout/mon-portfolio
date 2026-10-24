@@ -1,0 +1,342 @@
+---
+title: "Réhabilitation du ponton Renée Sabran — Accessibilité PMR"
+publishedAt: "2026-06-01"
+summary: "Projet de 1ère année SeaTech — étude pluridisciplinaire pour la réhabilitation et l'aménagement d'un ponton de l'Hôpital Renée Sabran (presqu'île de Giens) pour les personnes à mobilité réduite, alliant génie civil, protection anticorrosion, modélisation numérique et conception accessible."
+images:
+  - "/images/projects/renee-sabran/cover.jpg"
+  - "/images/projects/renee-sabran/ponton-existant.jpg"
+  - "/images/projects/renee-sabran/fusion-3d.jpg"
+tag: "Génie Civil"
+---
+
+## Contexte du projet
+
+L'**Hôpital Renée Sabran** (groupe HCL — Hospices Civils de Lyon) est un établissement médical situé sur la **presqu'île de Giens**, dans le Var. Cet hôpital spécialisé en rhumatologie, orthopédie et rééducation accueille des patients dont une grande partie souffre de pathologies locomotrices. L'accès à la mer constitue un élément thérapeutique central pour ces patients.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/hospital-map.jpg" alt="Plan de l'hôpital Renée Sabran et localisation du ponton" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Plan de l'hôpital Renée Sabran — le ponton est situé en accès direct à la mer</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/vue-satellite.jpg" alt="Vue satellite de la presqu'île de Giens" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Vue satellite — presqu'île de Giens, Méditerranée (Var, 83)</Text>
+  </Column>
+</Row>
+
+Le ponton existant, vieillissant, est aujourd'hui **inaccessible aux personnes à mobilité réduite** et souffre d'une dégradation avancée due à la corrosion marine. Ce projet de première année SeaTech vise à proposer une solution complète de réhabilitation : diagnostic structural, protection anticorrosion, reconception architecturale et mise aux normes PMR.
+
+![Photo du ponton existant avant réhabilitation](/images/projects/renee-sabran/ponton-existant.jpg)
+
+<Card radius="l" padding="24" marginBottom="24" border="brand-medium">
+  <Column gap="8">
+    <Text variant="heading-strong-s">Équipe projet — Promotion 2025-2026</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">**Étudiants :** Courtois Manon, Delchie Théo, Flinois Mathias, Mercier Gabin, Mezlef Jack, Morganti Barbara, Moussu Julian, Rendé Simon, Thenoz Matthieu, Vogel Margaux</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">**Encadrants :** C. Anthierens, E. Aragon, S. Berlioz, A-M. Dissard, J. Piazzola</Text>
+  </Column>
+</Card>
+
+---
+
+## Analyse du site et environnement marin
+
+### Conditions météo-océaniques
+
+Une analyse météo-océanique approfondie a été conduite pour caractériser les sollicitations auxquelles sera soumise la structure. Les données de vent et de vagues ont été extraites et traitées à l'aide du modèle spectral **JONSWAP**.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/rose-des-vents-ete.jpg" alt="Rose des vents estivale — presqu'île de Giens" style={{width: "100%", aspectRatio: "1/1", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Rose des vents — période estivale</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/rose-des-vents-hiver.jpg" alt="Rose des vents hivernale — presqu'île de Giens" style={{width: "100%", aspectRatio: "1/1", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Rose des vents — période hivernale (mistral dominant)</Text>
+  </Column>
+</Row>
+
+Le site est **relativement abrité** grâce à la topographie de la presqu'île. La hauteur significative des vagues (Hs) a été estimée à environ **0,8 m** dans les scénarios défavorables, ce qui a guidé les choix structuraux vers des solutions robustes mais non surdimensionnées.
+
+![Hauteur significative des vagues en fonction de la bathymétrie](/images/projects/renee-sabran/hauteur-vagues.jpg)
+
+### Contrainte Natura 2000
+
+La presqu'île de Giens est classée en **zone Natura 2000**, ce qui impose des contraintes environnementales strictes sur tous les matériaux et interventions en mer.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/natura-2000-regional.jpg" alt="Carte Natura 2000 régionale — Giens et îles d'Hyères" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Périmètre Natura 2000 régional — Giens et îles d'Hyères</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/natura-2000-local.jpg" alt="Carte Natura 2000 locale — zone du ponton" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Périmètre Natura 2000 local — zone directe du ponton</Text>
+  </Column>
+</Row>
+
+### Normes PMR applicables
+
+<Table
+  data={{
+    headers: [
+      { content: "Critère", key: "critere" },
+      { content: "Norme PMR", key: "norme" }
+    ],
+    rows: [
+      ["Pente maximale du cheminement", "≤ 5 %"],
+      ["Largeur minimale de passage", "1,40 m"],
+      ["Espace de manœuvre fauteuil", "1,50 m × 1,50 m"],
+      ["Hauteur des rampes d'appui", "70 cm et 90 cm"],
+      ["Largeur porte accessible", "≥ 90 cm"],
+      ["Signalétique podotactile", "Obligatoire aux transitions"],
+      ["Éclairage", "LED ambre (Natura 2000 — faune marine)"]
+    ]
+  }}
+/>
+
+---
+
+## Structure primaire — Diagnostic et protection anticorrosion
+
+### Modélisation numérique du ponton existant (MATLAB)
+
+Un **jumeau numérique** (digital twin) de la structure existante a été développé sous MATLAB pour modéliser la géométrie des pieux, poutres et longerons, et calculer les contraintes subies.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/matlab-vue-dessus.jpg" alt="Modèle MATLAB — vue de dessus du ponton" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Jumeau numérique MATLAB — vue en plan</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/matlab-vue-profil.jpg" alt="Modèle MATLAB — vue de profil avec pieux" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Jumeau numérique MATLAB — vue de profil (14 pieux)</Text>
+  </Column>
+</Row>
+
+### Analyse de la corrosion galvanique
+
+L'inspection a révélé une **corrosion galvanique** active entre les profils IPN en acier carbone et les pièces de fixation en acier inoxydable 316L. Ce couplage électrochimique accélère la dégradation de l'acier carbone (anode sacrificielle naturelle).
+
+![Schéma de corrosion galvanique entre IPN et pièces inox](/images/projects/renee-sabran/corrosion-galvanique.jpg)
+
+La structure secondaire s'est révélée **irrémédiablement compromise** par la corrosion et devra être intégralement remplacée. La structure primaire (pieux) est en meilleur état que prévu grâce à la peinture anticorrosion déjà en place.
+
+### Stratégie de protection anticorrosion — 4 solutions combinées
+
+<Table
+  data={{
+    headers: [
+      { content: "Solution", key: "sol" },
+      { content: "Description", key: "desc" },
+      { content: "Objectif", key: "objectif" }
+    ],
+    rows: [
+      ["A — Décapage HPW", "Décapage haute pression sous-marin (1 200 bar) + conversion de rouille phosphatante", "Préparation de surface Sa 2,5"],
+      ["B — Revêtement époxy C5H", "3 couches époxy + finition PU, épaisseur 500 µm, certification ACQPA C5H", "Protection immergée longue durée"],
+      ["C — Anodes sacrificielles Zn-Al-In", "28 anodes 5 kg + électrodes Ag/AgCl de contrôle (3/paire de pieux)", "Protection cathodique active"],
+      ["D — Enrochement anti-affouillement", "7 m³ gravé concassé 40/80 mm + géotextile 400 g/m²", "Stabilisation du fond marin"]
+    ]
+  }}
+/>
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/anodes-sacrificielles.jpg" alt="Anodes sacrificielles zinc-aluminium-indium 5kg" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Anodes sacrificielles Zn-Al-In 5 kg — protection cathodique</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/peinture-anticorrosion.jpg" alt="Système de peinture époxy multicouche C5H certifié ACQPA" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Système peinture époxy multicouche certifié ACQPA C5H (500 µm)</Text>
+  </Column>
+</Row>
+
+---
+
+## Structure secondaire — Nouvelle conception
+
+### Dimensionnement et géométrie
+
+La nouvelle structure secondaire a été entièrement reconçue à partir des contraintes de charge et des normes PMR. Elle repose sur des **profils IPN 100** espacés de 1,1 m, portés par des **profils UPN 200** constituant la structure primaire.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/cad-plan-dessus.jpg" alt="Plan CAO de la structure secondaire — vue de dessus" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Plan CAO — vue de dessus, espacement IPN 100 à 1,1 m</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/cad-coupe.jpg" alt="Coupe transversale de la structure secondaire" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Coupe transversale — profils IPN sur UPN 200</Text>
+  </Column>
+</Row>
+
+### Modèle 3D Fusion 360
+
+Un modèle 3D complet de la nouvelle structure a été réalisé sous **Autodesk Fusion 360** pour valider l'intégration des composants et préparer les plans d'exécution.
+
+![Modèle 3D Fusion 360 de la nouvelle structure du ponton](/images/projects/renee-sabran/fusion-3d.jpg)
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/ipn-upn-profils.jpg" alt="Schéma profils IPN 100 et UPN 200" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Profils IPN 100 (secondaire) sur UPN 200 (primaire)</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/structure-existante.jpg" alt="État de la structure secondaire existante avant remplacement" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Structure secondaire existante — état avant remplacement</Text>
+  </Column>
+</Row>
+
+> 🎥 Retrouvez la modélisation 3D complète sur la chaîne YouTube du projet : [youtube.com/@ProjetSeaTech1A](https://www.youtube.com/@ProjetSeaTech1A)
+
+---
+
+## Structure tertiaire — Aménagements PMR
+
+### Platelage et ponton flottant
+
+Le platelage est réalisé en **bois exotique** traité pour le milieu marin. En bout d'ouvrage, un **ponton flottant de 3 m × 6,5 m** permet la mise à l'eau des embarcations et l'accès direct depuis le niveau de la mer.
+
+![Ponton flottant en bout d'ouvrage — accès eau et sports nautiques](/images/projects/renee-sabran/ponton-flottant.jpg)
+
+### Système d'accès à l'eau — Seatrac
+
+Pour permettre une mise à l'eau **autonome et sécurisée** aux patients en fauteuil roulant, le système **Seatrac** a été sélectionné : une rampe de descente guidée sur rail permettant à l'utilisateur d'entrer dans l'eau depuis son fauteuil.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/seatrac-systeme.jpg" alt="Système Seatrac — rampe d'accès à l'eau PMR" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Système Seatrac — descente autonome dans l'eau depuis le fauteuil</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/monte-pmr-rotation.jpg" alt="Monte-charge à rotation pour sports nautiques PMR" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Monte-charge rotatif — embarquement nautique PMR motorisé</Text>
+  </Column>
+</Row>
+
+### Monte-charge nautique PMR
+
+Pour les sports nautiques (voile, kayak, paddle), un **monte-charge à rotation motorisé** permet le transfert du patient depuis le ponton vers l'embarcation à l'aide d'un harnais — une solution conçue pour permettre une pratique réelle et autonome des sports nautiques.
+
+![Schéma du système de mise à l'eau avec monte-charge rotatif pour sports nautiques](/images/projects/renee-sabran/monte-pmr-schema.jpg)
+
+### Éclairage et aménagements environnementaux
+
+Conformément aux exigences **Natura 2000** de protection de la faune marine nocturne, l'éclairage est intégralement réalisé en **LED ambre** (longueur d'onde ≥ 590 nm), sans composante bleue néfaste aux espèces marines.
+
+<Row gap="8" marginBottom="24">
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/eclairage-led-ambre.jpg" alt="Éclairage LED ambre — compatible Natura 2000" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Éclairage LED ambre — compatible zone Natura 2000</Text>
+  </Column>
+  <Column gap="8" fillWidth>
+    <img src="/images/projects/renee-sabran/cabine-pmr.jpg" alt="Plan cabine PMR 200×200 cm avec barre d'appui" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Cabine PMR 200×200 cm — porte 90 cm, barres à 70 cm</Text>
+  </Column>
+</Row>
+
+Les autres aménagements tertiaires comprennent :
+- **Pergola** à lames orientables pour l'ombrage
+- **Matériaux éco-conçus** (composite bois-plastique recyclé pour les garde-corps)
+- **Signalétique podotactile** aux transitions et changements de niveau
+- **Espace de manœuvre** fauteuil de 1,5 m × 1,5 m à chaque extrémité
+
+---
+
+## Coûts d'installation et analyse LCC
+
+### Détail des coûts d'installation (Année 0)
+
+<Table
+  data={{
+    headers: [
+      { content: "Solution", key: "sol" },
+      { content: "Description", key: "desc" },
+      { content: "Coût HT", key: "cout" }
+    ],
+    rows: [
+      ["A", "Décapage HPW 14 pieux (3 plongeurs, 1 200 bar, convertisseur rouille)", "16 080 €"],
+      ["B", "Revêtement époxy multicouche 500 µm — 14 pieux (37 m² submergé + 18 m² émergé)", "8 726 €"],
+      ["C", "28 anodes Zn-Al-In 5 kg + 2 électrodes Ag/AgCl + inspection", "6 596 €"],
+      ["D", "7 m³ enrochement 40/80 mm + géotextile 400 g/m² + mise en œuvre", "8 358 €"],
+      ["—", "CND épaisseur ultrasons (obligatoire préalablement)", "3 500 €"],
+      ["—", "Sondage géotechnique CPT (z_fix)", "5 800 €"],
+      ["Total A+B+C (nécessaire)", "", "31 402 €"],
+      ["Total programme complet A+B+C+D + préalables", "", "49 060 €"]
+    ]
+  }}
+/>
+
+### Programme de maintenance sur 20 ans
+
+<Table
+  data={{
+    headers: [
+      { content: "Fréquence", key: "freq" },
+      { content: "Action", key: "action" },
+      { content: "Intervenant", key: "inter" },
+      { content: "Coût/acte", key: "cout" }
+    ],
+    rows: [
+      ["Mensuelle", "Inspection visuelle — rouille, cloquage, dégâts mécaniques", "Gestionnaire HRS", "0 €"],
+      ["Semestrielle", "Mesure potentiel anodes (électrode Ag/AgCl)", "Technicien maritime", "600 €"],
+      ["Semestrielle", "Levé bathymétrique sous pieux (sondeur portable)", "Technicien maritime", "400 €"],
+      ["Annuelle (oct.)", "Retrait partiel platelage + inspection + retouche peinture", "Entreprise maritime", "2 800 €"],
+      ["Tous les 5 ans", "Remplacement intégral anodes Zn-Al-In (21 anodes)", "Plongeur qualifié", "3 260 €"],
+      ["Tous les 5 ans", "Inspection épaisseur paroi (ultrasons immergé)", "Bureau PMS", "5 500 €"],
+      ["Tous les 10 ans", "Reprise revêtement époxy (décapage HPW + couches 2 et 3)", "Entreprise maritime", "12 000 €"],
+      ["Tous les 10 ans", "Recalcul structural complet avec sections mesurées", "Bureau structure", "4 500 €"],
+      ["Année 20", "Évaluation finale — remplacement vs élongation +10 ans", "Bureau structure", "4 000 €"]
+    ]
+  }}
+/>
+
+### Analyse LCC sur 20 ans
+
+![Graphique d'analyse LCC — coûts actualisés sur 20 ans](/images/projects/renee-sabran/lcc-graphique.jpg)
+
+<Card radius="l" padding="24" marginBottom="24" border="brand-medium">
+  <Column gap="8">
+    <Text variant="heading-strong-s">Coût du Cycle de Vie sur 20 ans (LCC₂₀)</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">**Coût d'installation C_install** = 49 060 €</Text>
+    <Text variant="body-default-m" onBackground="neutral-weak">**Coût de maintenance actualisé C_maint** ≈ 138 323 € (taux d'actualisation r = 3 %)</Text>
+    <Text variant="heading-strong-m">LCC₂₀ ≈ 187 383 € HT</Text>
+    <Text variant="body-default-xs" onBackground="neutral-weak">Le budget initial de l'hôpital était de 150 000 € HT. Le dépassement de ~25 % s'explique principalement par l'intégration d'un programme de maintenance préventive structuré sur deux décennies, indispensable à la pérennité de l'ouvrage.</Text>
+  </Column>
+</Card>
+
+---
+
+## Compétences mobilisées
+
+- **Océanographie / Météorologie** — traitement de données de vague et de vent, modèle JONSWAP, analyse spectrale
+- **Mécanique des structures** — dimensionnement IPN/UPN, calcul de contraintes, marges de sécurité
+- **Électrochimie / Corrosion** — corrosion galvanique, protection cathodique, systèmes de peinture ACQPA C5H
+- **Modélisation numérique** — jumeau numérique MATLAB, modélisation 3D Fusion 360
+- **Réglementation** — normes PMR (accessibilité universelle), Natura 2000 (zones marines protégées)
+- **Analyse économique** — Life Cycle Cost (LCC), actualisation financière sur 20 ans
+- **Gestion de projet** — coordination d'une équipe de 10 étudiants, planification par jalons
+
+---
+
+## Conclusion
+
+Ce projet illustre la complexité des **compromis inhérents à l'ingénierie** : contraintes techniques (résistance structurale, corrosion marine), réglementaires (PMR, Natura 2000), environnementales (zone protégée, matériaux éco-conçus) et financières (LCC vs budget) s'articulent et se confrontent à chaque décision.
+
+L'approche pluridisciplinaire adoptée — alliant génie civil, électrochimie, physique des vagues et conception accessible — a permis de proposer une solution cohérente et réaliste, compatible avec la réglementation Natura 2000 et offrant une **accessibilité nautique réelle et autonome** aux patients de l'hôpital Renée Sabran.
+
+---
+
+## Documents complémentaires
+
+<Row gap="16" marginTop="16">
+  <Card radius="l" padding="20" fillWidth>
+    <Row gap="16" vertical="center">
+      <Icon name="document" size="l" onBackground="brand-medium" />
+      <Column gap="4" fillWidth>
+        <Text variant="heading-strong-s">Rapport complet du projet</Text>
+        <Text variant="body-default-xs" onBackground="neutral-weak">Rapport Projet 1A — Réhabilitation ponton Renée Sabran, SeaTech 2025-2026</Text>
+      </Column>
+      <Button variant="secondary" size="s" label="Voir" href="/documents/Projet_Renee_Sabran.pdf" suffixIcon="chevronRight" />
+    </Row>
+  </Card>
+</Row>
