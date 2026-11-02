@@ -1,13 +1,12 @@
 ---
-title: "Mallette de contrôle qualité pour moteurs de robots pompier"
+title: "Mallette de controle qualite — moteurs robot Tec800"
 publishedAt: "2025-06-01"
-summary: "Stage chez Angatec (La Rochelle) — conception complète d'une mallette de test autonome pour le contrôle qualité des moteurs brushless du robot pompier Tec800, de l'analyse du besoin jusqu'à la validation du produit."
-images: 
-  - "/images/projects/angatec/montage-elec.png"
-  - "/images/projects/angatec/CAO-bornier.png
+summary: "Conception d'une mallette de test autonome pour le controle qualite des moteurs brushless du robot pompier Tec800 d'Angatec."
+images:
+  - "/images/projects/angatec/mallette-finale.jpg"
+  - "/images/projects/angatec/IMG_1809.png"
   - "/images/projects/angatec/cover.jpg"
-  
-tag: "Ingénierie"
+tag: "Ingenierie"
 ---
 
 ## Contexte
@@ -74,9 +73,9 @@ Pour remplacer l'ordinateur et le logiciel propriétaire, j'ai opté pour une **
 </Row>
 
 **Architecture d'alimentation :**
-- Convertisseur AC/DC 220 V → 50 V pour le contrôleur Roboteq
-- Convertisseur AC/DC 220 V → 5 V pour la Raspberry Pi et l'écran
-- Convertisseur DC/DC 50 V → 24 V pour le circuit de freinage
+- Convertisseur AC/DC 220 V vers 50 V pour le contrôleur Roboteq
+- Convertisseur AC/DC 220 V vers 5 V pour la Raspberry Pi et l'écran
+- Convertisseur DC/DC 50 V vers 24 V pour le circuit de freinage
 
 **Connectique moteur :** borniers à levier Wago — 6 borniers 16 mm² pour la puissance, 8 borniers 2,5 mm² pour les signaux — permettant un branchement rapide sans outillage.
 
@@ -118,12 +117,12 @@ L'interface s'articule autour de quatre types d'écrans réutilisables : `Instru
 
 <Row gap="8" marginBottom="24">
   <Column gap="8" fillWidth>
-    <img src="/images/projects/angatec/gui-accueil.jpg" alt="Écran d'accueil de l'interface" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
-    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Écran d'accueil de l'interface graphique</Text>
+    <img src="/images/projects/angatec/gui-accueil.jpg" alt="Ecran d'accueil de l'interface" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Ecran d'accueil de l'interface graphique</Text>
   </Column>
   <Column gap="8" fillWidth>
-    <img src="/images/projects/angatec/gui-frames.jpg" alt="Différentes frames du programme" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
-    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Les différentes frames du programme de test</Text>
+    <img src="/images/projects/angatec/gui-frames.jpg" alt="Differentes frames du programme" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Les differentes frames du programme de test</Text>
   </Column>
 </Row>
 
@@ -139,12 +138,12 @@ L'ensemble des composants est intégré dans un boîtier **Max Case MAX 505**. L
     <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Rendu CAO de la structure interne assemblée</Text>
   </Column>
   <Column gap="8" fillWidth>
-    <img src="/images/projects/angatec/cao-boitier.jpg" alt="Intégration dans le boîtier" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
-    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Intégration des composants dans le Max Case</Text>
+    <img src="/images/projects/angatec/cao-boitier.jpg" alt="Integration dans le boitier" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Integration des composants dans le Max Case</Text>
   </Column>
 </Row>
 
-La structure a été découpée en **5 pièces distinctes** (plateau d'impression limité à 25×25 cm), chacune imprimée en ~18 heures sur une **Bambu Lab X1 Carbon**. Les fixations utilisent des trous taraudés M3 et des assemblages M5, avec des inserts filetés mis en place au fer à souder.
+La structure a été découpée en **5 pièces distinctes** (plateau d'impression limité à 25x25 cm), chacune imprimée en environ 18 heures sur une **Bambu Lab X1 Carbon**. Les fixations utilisent des trous taraudés M3 et des assemblages M5, avec des inserts filetés mis en place au fer à souder.
 
 ---
 
@@ -154,16 +153,16 @@ Une fois les pièces imprimées, le montage électrique a été réalisé confor
 
 <Row gap="8" marginBottom="24">
   <Column gap="8" fillWidth>
-    <img src="/images/projects/angatec/assemblage-electrique.jpg" alt="Mallette en cours d'assemblage" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <img src="/images/projects/angatec/malette-assemblage.png" alt="Mallette en cours d'assemblage" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
     <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Mallette en cours d'assemblage électrique</Text>
   </Column>
   <Column gap="8" fillWidth>
-    <img src="/images/projects/angatec/decoupe-laser.jpg" alt="Découpe laser de la plaque" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
-    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Découpe laser de la plaque interface utilisateur</Text>
+    <img src="/images/projects/angatec/decoupe-laser.png" alt="Decoupe laser de la plaque" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Decoupe laser de la plaque interface utilisateur</Text>
   </Column>
 </Row>
 
-![Rendu final de la plaque interface utilisateur](/images/projects/angatec/plaque-finale.jpg)
+![Rendu final de la plaque interface utilisateur](/images/projects/angatec/mallette-finale.jpg)
 
 La mallette intègre également une petite caisse à outils contenant le matériel de dénudage des câbles et les stickers **QC Pass / QC Rejected** à coller sur les moteurs après test.
 
@@ -171,7 +170,10 @@ La mallette intègre également une petite caisse à outils contenant le matéri
 
 ## Résultat final
 
-![Mallette de test finalisée en fonctionnement](/images/projects/angatec/mallette-fonctionnement.MOV)
+<video width="100%" controls preload="metadata">
+  <source src="/images/projects/angatec/mallette-fonctionnement.MOV" type="video/quicktime" />
+  Votre navigateur ne supporte pas la balise vidéo.
+</video>
 
 La mallette a été validée en exécutant les quatre tests sur des moteurs de référence. Elle permet désormais à **n'importe quel opérateur** de réaliser un contrôle qualité complet en branchant simplement le moteur et la mallette sur secteur.
 
@@ -184,7 +186,7 @@ En fin de stage, un employé d'Angatec a enrichi le programme d'une **fonctionna
 - **Python** — communication série ASCII, interface graphique tkinter/ttkbootstrap, architecture multi-thread
 - **CAO 3D** — modélisation et assemblage de pièces mécaniques sur mesure
 - **Impression 3D** — Bambu Lab X1 Carbon, pièces fonctionnelles avec inserts filetés
-- **Électronique** — schéma électrique, câblage, convertisseurs de tension, contrôleur moteur Roboteq
+- **Electronique** — schéma électrique, câblage, convertisseurs de tension, contrôleur moteur Roboteq
 - **Fabrication** — découpe laser, nomenclature de composants, gestion fournisseurs
 
 ---
@@ -199,7 +201,7 @@ En fin de stage, un employé d'Angatec a enrichi le programme d'une **fonctionna
         <Text variant="heading-strong-s">Rapport de stage</Text>
         <Text variant="body-default-xs" onBackground="neutral-weak">Rapport complet — Angatec, La Rochelle</Text>
       </Column>
-      <Button variant="secondary" size="s" label="Voir" href="/documents/Rapport de stage Angatec_compressed.pdf" suffixIcon="chevronRight" />
+      <Button variant="secondary" size="s" label="Voir" href="/documents/Rapport_de_stage_Angatec.pdf" suffixIcon="chevronRight" />
     </Row>
   </Card>
 </Row>
