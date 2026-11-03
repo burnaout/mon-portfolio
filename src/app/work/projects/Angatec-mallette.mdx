@@ -4,7 +4,7 @@ publishedAt: "2025-06-01"
 summary: "Conception d'une mallette de test autonome pour le controle qualite des moteurs brushless du robot pompier Tec800 d'Angatec."
 images:
   - "/images/projects/angatec/mallette-finale.jpg"
-  - "/images/projects/angatec/IMG_1809.png"
+  - "/images/projects/angatec/malette-assemblage.png"
   - "/images/projects/angatec/cover.jpg"
 tag: "Ingenierie"
 ---
@@ -63,7 +63,7 @@ Pour remplacer l'ordinateur et le logiciel propriétaire, j'ai opté pour une **
 
 <Row gap="8" marginBottom="24">
   <Column gap="8" fillWidth>
-    <img src="/images/projects/angatec/raspberry-carte-frein.jpg" alt="Raspberry Pi et carte de contrôle de frein" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
+    <img src="/images/projects/angatec/raspberry-carte-frein.png" alt="Raspberry Pi et carte de contrôle de frein" style={{width: "100%", aspectRatio: "4/3", objectFit: "cover", borderRadius: "12px"}} />
     <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Raspberry Pi et carte de commande du frein</Text>
   </Column>
   <Column gap="8" fillWidth>
@@ -100,12 +100,19 @@ def write(self, command: str) -> None:
 Les commandes principales utilisées :
 
 | Commande | Fonction |
+
 |---|---|
+
 | `^MMOD` | Mode du moteur (Open Loop / Closed Loop) |
+
 | `~BADJ` | Lecture de l'angle BADJ |
+
 | `%CLMOD` | Réglage automatique moteur/encodeur |
+
 | `!G` | Application d'une consigne de rotation |
+
 | `?BS` | Lecture de la vitesse moteur (rpm) |
+
 
 ### Interface graphique
 
@@ -117,11 +124,11 @@ L'interface s'articule autour de quatre types d'écrans réutilisables : `Instru
 
 <Row gap="8" marginBottom="24">
   <Column gap="8" fillWidth>
-    <img src="/images/projects/angatec/gui-accueil.jpg" alt="Ecran d'accueil de l'interface" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
+    <img src="/images/projects/angatec/interface-graphique.png" alt="Ecran d'accueil de l'interface" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
     <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Ecran d'accueil de l'interface graphique</Text>
   </Column>
   <Column gap="8" fillWidth>
-    <img src="/images/projects/angatec/gui-frames.jpg" alt="Differentes frames du programme" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
+    <img src="/images/projects/angatec/interface-graphique2.png" alt="Differentes frames du programme" style={{width: "100%", aspectRatio: "16/9", objectFit: "cover", borderRadius: "12px"}} />
     <Text variant="body-default-xs" onBackground="neutral-weak" align="center">Les differentes frames du programme de test</Text>
   </Column>
 </Row>
@@ -149,6 +156,8 @@ La structure a été découpée en **5 pièces distinctes** (plateau d'impressio
 
 ## Montage électrique et plaque interface
 
+![Shema du montage electronique de la malette](/images/projects/angatec/planmontage-electronique.png)
+
 Une fois les pièces imprimées, le montage électrique a été réalisé conformément au schéma électrique détaillé. La face supérieure de la mallette a été fermée par une **plaque plastique de 3 mm** découpée au **laser** selon un patron imprimé.
 
 <Row gap="8" marginBottom="24">
@@ -169,13 +178,13 @@ La mallette intègre également une petite caisse à outils contenant le matéri
 ---
 
 ## Résultat final
+La mallette a été validée en exécutant les quatre tests sur des moteurs de référence. Elle permet désormais à **n'importe quel opérateur** de réaliser un contrôle qualité complet en branchant simplement le moteur et la mallette sur secteur.
 
 <video width="100%" controls preload="metadata">
   <source src="/images/projects/angatec/mallette-fonctionnement.MOV" type="video/quicktime" />
   Votre navigateur ne supporte pas la balise vidéo.
 </video>
 
-La mallette a été validée en exécutant les quatre tests sur des moteurs de référence. Elle permet désormais à **n'importe quel opérateur** de réaliser un contrôle qualité complet en branchant simplement le moteur et la mallette sur secteur.
 
 En fin de stage, un employé d'Angatec a enrichi le programme d'une **fonctionnalité de configuration des robots neufs**, illustrant la vocation évolutive de l'outil.
 
